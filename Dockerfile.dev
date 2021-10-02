@@ -4,7 +4,7 @@
 FROM node:alpine
 
 # Will add all the files to this folder /usr/app
-WORKDIR '/usr/app'
+WORKDIR '/app'
   
 # With this line we wont run the RUN npm install
 # it will avoid unecessary rebuilds
@@ -26,5 +26,7 @@ RUN npm run build
 # For AWS Elasticbeanstalk exposing the app to port 80
 
 FROM nginx
+
 EXPOSE 80
-COPY --from=0 /usr/app/build /usr/share/nginx/html
+
+COPY --from=0 /app/build /usr/share/nginx/html
