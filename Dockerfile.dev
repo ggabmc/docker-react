@@ -1,31 +1,41 @@
-# Development Deployment
+# # Development Deployment
   
-# Specify a base image
+# # Specify a base image
+# FROM node:alpine as builder
+
+# # Will add all the files to this folder /usr/app
+# WORKDIR '/app'
+  
+# # With this line we wont run the RUN npm install
+# # it will avoid unecessary rebuilds
+# # We copy the dependencies from machine build context to container
+# COPY ./package.json ./
+  
+# # Install some depenendencies
+# RUN npm install
+
+# # Copy from your machine build context to inside container
+# COPY ./ ./
+
+# # Default Command
+# #CMD ["npm", "run", "start"]
+
+
+# # Build compact version for production
+# RUN npm run build
+
+# FROM nginx
+# #COPY --from=builder /app/build /usr/share/nginx/html
+
+# # For AWS Elasticbeanstalk exposing the app to port 80
+# EXPOSE 80
+
 FROM node:alpine as builder
-
-# Will add all the files to this folder /usr/app
 WORKDIR '/app'
-  
-# With this line we wont run the RUN npm install
-# it will avoid unecessary rebuilds
-# We copy the dependencies from machine build context to container
-COPY ./package.json ./
-  
-# Install some depenendencies
+COPY package.json .
 RUN npm install
-
-# Copy from your machine build context to inside container
-COPY ./ ./
-
-# Default Command
-#CMD ["npm", "run", "start"]
-
-
-# Build compact version for production
+COPY . .
 RUN npm run build
 
 FROM nginx
 COPY --from=builder /app/build /usr/share/nginx/html
-
-# For AWS Elasticbeanstalk exposing the app to port 80
-EXPOSE 80
