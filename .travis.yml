@@ -6,7 +6,8 @@ services:
   - docker
 
 before_install:
-  - docker build --tag=ggabmc/docker-react -f Dockerfile.dev .
+  #- docker build --tag=ggabmc/docker-react -f Dockerfile.dev .
+  - docker build -t ggabmc/docker-react -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true ggabmc/docker-react npm run test
@@ -20,10 +21,7 @@ deploy:
   bucket_name: 'elasticbeanstalk-us-east-1-063903771411'
   bucket_path: 'docker-react'
   on:
-    branch: main
-
+    branch: master
   # User("docker-react-travis-ci") (IAM) Access keys 
-
   access_key_id: $AWS_ACCESS_KEY
-
   secret_access_key: $AWS_SECRET_KEY
