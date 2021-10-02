@@ -24,5 +24,4 @@ COPY ./ ./
 RUN npm run build
 
 # For AWS Elasticbeanstalk exposing the app to port 80
-EXPOSE 80  
-
+EXPOSE 80
