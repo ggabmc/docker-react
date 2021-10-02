@@ -25,8 +25,8 @@ COPY ./ ./
 
 # For AWS Elasticbeanstalk exposing the app to port 80
 
- FROM nginx
+ #FROM nginx
 
- EXPOSE 80
+ #EXPOSE 80
 
- COPY --from=0 /app/build /usr/share/nginx/html
+ #COPY --from=0 /app/build /usr/share/nginx/html
