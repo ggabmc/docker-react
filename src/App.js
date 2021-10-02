@@ -8,6 +8,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Hi Gabriel Castellanos (got this change on feauture branch)
+          new text = React Js
         </p>
         <a
           className="App-link"
