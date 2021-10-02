@@ -18,5 +18,13 @@ RUN npm install
 COPY ./ ./
 
 #Default Command
-CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "start"]
 
+# Build compact version for production
+RUN npm run build
+
+# For AWS Elasticbeanstalk exposing the app to port 80
+
+FROM nginx
+EXPOSE 80
+COPY --from=builder /app/build /usr/share/nginx/html
