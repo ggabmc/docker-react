@@ -2,22 +2,22 @@
 #This file will be look by AWS Elasticbeanstalk docker plataform
 #when travis ci deploy the app to AWS Elastic Bean Stalk
 
-# FROM node:alpine as builder
+FROM node:alpine as builder
 
-# WORKDIR '/app'
+WORKDIR '/app'
 
-# COPY package.json .
+COPY package.json .
 
-# RUN npm install
+RUN npm install
 
-# COPY . .
+COPY . .
 
-# Build compact version for production
-# RUN npm run build
+#Build compact version for production
+RUN npm run build
 
-# FROM nginx
+FROM nginx
 
-# For AWS Elasticbeanstalk exposing the app to port 80
-# EXPOSE 80 
+#For AWS Elasticbeanstalk exposing the app to port 80
+EXPOSE 80 
 
-# COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html

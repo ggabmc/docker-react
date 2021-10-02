@@ -5,7 +5,7 @@ services:
   - docker
 
 before_install:
-  - docker build --tag ggabmc/docker-react -f Dockerfile.dev .
+  - docker build --tag ggabmc/docker-react -f Dockerfile .
 
 script:
   - docker run -e CI=true ggabmc/docker-react npm run test
