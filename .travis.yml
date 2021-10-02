@@ -11,7 +11,6 @@ before_install:
 script:
   - docker run -e CI=true ggabmc/docker-react npm run test
 
-
 # deploy to aws elasticbeanstalk
 deploy:
   provider: elasticbeanstalk
@@ -24,5 +23,7 @@ deploy:
     branch: master
 
   # User("docker-react-travis-ci") (IAM) Access keys 
+
   access_key_id: $AWS_ACCESS_KEY
+
   secret_access_key: $AWS_SECRET_KEY
