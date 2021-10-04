@@ -1,6 +1,8 @@
-#Production deployment
-#This file will be look by AWS Elasticbeanstalk docker plataform
-#when travis ci deploy the app to AWS Elastic Bean Stalk
+# Docker for Production
+
+# This file will be look by AWS Elasticbeanstalk docker plataform
+
+# when travis ci deploy the app to AWS Elastic Bean Stalk
 
 FROM node:alpine as builder
 
