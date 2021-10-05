@@ -3,18 +3,16 @@
 # Specify a base image
 FROM node:alpine
 
-# Will add all the files to this folder /usr/app
+# Work directory in the container
 WORKDIR '/app'
   
-# With this line we wont run the RUN npm install
-# it will avoid unecessary rebuilds
-# We copy the dependencies from machine build context to container
+# Copy my 'package.json' to '/app' directory in the container
 COPY package.json .
 
-# Install some depenendencies
+# Pulling the dependencies
 RUN npm install
 
-# Copy from your machine build context to inside container
+# Copy over all the source code with dependencies to the container 
 COPY . .
 
 # Default Command
